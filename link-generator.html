@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student GWA Link Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+.box{
+  background:#fff;
+  padding:25px;
+  border-radius:10px;
+  width:100%;
+  max-width:420px;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+}
+h2{text-align:center;margin-bottom:10px;}
+input,button{
+  width:100%;
+  padding:10px;
+  margin-top:10px;
+}
+button{
+  background:#007bff;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+}
+button:hover{background:#0056b3;}
+.output{
+  margin-top:15px;
+  background:#eef3ff;
+  padding:10px;
+  border-radius:6px;
+  word-break:break-all;
+}
+small{color:#555;}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Student GWA Link Generator</h2>
+<p><small>Enter the Student ID to generate a private viewing link.</small></p>
+
+<input type="text" id="sid" placeholder="e.g. 2023-001">
+<button onclick="generate()">Generate Link</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+function generate(){
+  const id = document.getElementById("sid").value.trim();
+  if(!id){
+    alert("Please enter a Student ID");
+    return;
+  }
+  const baseURL = "https://yourusername.github.io/student-gwa-viewer/view.html";
+  const link = baseURL + "?id=" + encodeURIComponent(id);
+  document.getElementById("result").innerHTML = `
+    <div class="output">
+      <strong>Student Link:</strong><br>
+      <a href="${link}" target="_blank">${link}</a>
+    </div>`;
+}
+</script>
+
+</body>
+</html>
